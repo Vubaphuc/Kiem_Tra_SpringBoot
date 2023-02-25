@@ -20,13 +20,14 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
+
 public class AdminService {
     private final Reponsitory reponsitory;
-
     static int id = 1;
+
     public CourseUserDto createCourse(UpsertCourseRequest request) {
         Course course = Course.builder()
-                .id(id++)
+                .id(id)
                 .name(request.getName())
                 .description(request.getDescription())
                 .type(request.getType())
@@ -37,6 +38,7 @@ public class AdminService {
         DataBase.courses.add(course);
         CourseUserDto dto = reponsitory.searchCourseUserDtoByIdCourse(course.getId());
         DataBase.coursesDto.add(dto);
+        id++;
         return dto;
     }
 

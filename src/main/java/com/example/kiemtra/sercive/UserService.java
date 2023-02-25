@@ -21,6 +21,6 @@ public class UserService {
     }
 
     public List<CourseUserDto> getAllCourses(String typeValue, String nameValue, String topicValue) {
-        return courseReponsitory.getAllCourses1(typeValue,nameValue,topicValue);
+        return courseReponsitory.getAllCourses(typeValue,nameValue,topicValue);
     }
 }

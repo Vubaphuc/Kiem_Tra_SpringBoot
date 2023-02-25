@@ -1,6 +1,8 @@
 package com.example.kiemtra.request;
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
@@ -23,6 +25,6 @@ public class UpsertCourseRequest {
     private String type;
     private List<String> topics;
     private String thumbnail;
-    @NotEmpty(message = "Không được để trống")
+    @NotNull(message = "Không được để trống")
     private Integer userId;
 }

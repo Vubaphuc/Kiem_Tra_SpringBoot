@@ -54,7 +54,10 @@ public class Reponsitory {
         return pageSize;
     }
 
-    public List<CourseUserDto> getAllCourses1(String typeValue, String nameValue, String topicValue) {
+    public List<CourseUserDto> getAllCourses(String typeValue, String nameValue, String topicValue) {
+        if (typeValue.equals("") && nameValue.equals("") && topicValue.equals("")) {
+            return DataBase.coursesDto;
+        }
         List<CourseUserDto> list = new ArrayList<>();
         for (CourseUserDto dto : DataBase.coursesDto) {
             if (dto.getName().equals(nameValue) || dto.getType().equals(typeValue) || dto.getTopics().equals(topicValue)) {

@@ -26,7 +26,6 @@ public class AdminController {
                             @RequestParam(name = "pageSize",defaultValue = "10") Integer pageSizeValue) {
         return adminService.getAllCourse(pageValue,pageSizeValue);
     }
-
     // 2. Tạo khóa học mới
     @PostMapping("/courses")
     @ResponseStatus(HttpStatus.CREATED)
