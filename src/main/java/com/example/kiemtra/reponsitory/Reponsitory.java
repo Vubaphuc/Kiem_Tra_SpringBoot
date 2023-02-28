@@ -16,22 +16,30 @@ import java.util.Optional;
 @Repository
 public class Reponsitory {
 
-    public CourseUserDto searchCourseUserDtoByIdCourse (Integer id) {
-        ModelMapper mapper = new ModelMapper();
-        Optional<Course> courseOptional = DataBase.courses.stream()
-                .filter(course -> course.getId().equals(id))
-                .findFirst();
-        if (courseOptional.isPresent()) {
-            Course course = courseOptional.get();
-            Optional<User> userOptional = DataBase.users.stream()
-                    .filter(user -> course.getUserId().equals(user.getId()))
-                    .findFirst();
-            User user = userOptional.get();
-            CourseUserDto dto = mapper.map(course,CourseUserDto.class);
-            mapper.map(user,dto);
-            return dto;
+
+    public User getUserByID(Integer id) {
+        for (User u : DataBase.users) {
+            if (u.getId().equals(id)) {
+                return u;
+            }
         }
-        throw new BadRequestException("Not Found Course with id = " + id);
+        throw new BadRequestException("Khong tim thay ID " + id);
+    }
+
+    public Course getCourseByID(Integer id) {
+        for (Course u : DataBase.courses) {
+            if (u.getId().equals(id)) {
+                return u;
+            }
+        }
+        throw new BadRequestException("Khong tim thay ID " + id);
+    }
+
+    public CourseUserDto getCourseUserDto(Course course, User user) {
+        ModelMapper mapper = new ModelMapper();
+        CourseUserDto dto = mapper.map(course,CourseUserDto.class);
+        dto.setUser(user);
+        return dto;
     }
 
     public Optional<Course> getUserById(Integer id) {

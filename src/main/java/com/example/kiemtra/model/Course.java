@@ -7,10 +7,10 @@ import java.util.List;
 
 @Getter
 @Setter
+@ToString
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@ToString
 public class Course {
     private Integer id;
     private String name;
@@ -19,4 +19,5 @@ public class Course {
     private List<String> topics;
     private String thumbnail;
     private Integer userId;
+
 }
